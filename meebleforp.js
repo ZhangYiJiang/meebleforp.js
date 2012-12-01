@@ -33,7 +33,7 @@ var meebleforp = {
 	},
 
 	init: function () {
-		var purpleOverlay = $('<div>', {
+		var purpleOverlay = jQuery('<div>', {
 			css: {
 				position: 'fixed', 
 				top: 0, bottom: 0, right: 0, left: 0,
@@ -47,14 +47,14 @@ var meebleforp = {
 
 	flashPurple: function () {
 		this.purpleOverlay.fadeIn(500, function(){
-			$(this).delay(200).fadeOut(500);
+			jQuery(this).delay(200).fadeOut(500);
 		});
 	},
 
 	flashText: function (text, duration) {
 		if (!duration) duration = 2800;
 
-		var textEle = $('<span>', {
+		var textEle = jQuery('<span>', {
 				css: {
 					position: 'absolute', 
 					width: this.textWidth, 
@@ -89,7 +89,7 @@ var meebleforp = {
 		textEle.appendTo('body')
 			.fadeIn(300).delay(duration)
 		.fadeOut(600, function(){
-			$(this).remove();
+			jQuery(this).remove();
 		});
 	},
 
@@ -112,8 +112,8 @@ var meebleforp = {
 		var elePosition = ele.offset(), 
 			foundCollision = false;
 
-		$('span.purple-text').each(function(){
-			var position = $(this).offset();
+		jQuery('span.purple-text').each(function(){
+			var position = jQuery(this).offset();
 
 			if (Math.abs(elePosition.left - position.left) < this.textWidth && 
 				Math.abs(elePosition.top - position.top) < ele.height()) {
