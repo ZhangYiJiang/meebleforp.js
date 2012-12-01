@@ -20,15 +20,17 @@ var meebleforp = {
 			}, that.purpleFlashInterval * 2);
 		}, that.purpleFlashInterval);
 
-		setTimeout(function(){
-			clearInterval(that.textIntervalId);
-			clearInterval(that.purpleIntervalId);
-		}, duration);
+		if (duration) {
+			setTimeout(function(){
+				that.stop();
+			}, duration);
+		}
 	},
 
-	textWidth: 360, 
-	margin: 100,
-	purpleFlashInterval: 6000,
+	stop: function() {
+		clearInterval(this.textIntervalId);
+		clearInterval(this.purpleIntervalId);
+	},
 
 	init: function () {
 		var purpleOverlay = $('<div>', {
@@ -123,6 +125,10 @@ var meebleforp = {
 
 		return foundCollision;
 	},
+
+	textWidth: 360, 
+	margin: 100,
+	purpleFlashInterval: 6000,
 
 	startingPhrases: [	
 		"Ugh...", 
