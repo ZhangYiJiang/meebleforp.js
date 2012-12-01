@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>meebleforp.js - Purple Madness!</title>
+	<meta charset="utf-8" />
+	<style>
+	body {
+		text-align: center;
+		color: #444;
+		font-size: 16px;
+		font-family: Arial, sans-serif;
+	}
+
+	h1 {
+		font-size: 48px;
+		margin-bottom: 0.22em;
+		color: #8C5DAB;
+		text-shadow: 0 0 1px #fff, 0 0 1px #fff, 
+			0 0 36px, 2px 2px 0 rgba(0, 0, 0, 0.15);
+	}
+
+	p {
+		margin: 0;
+	}
+
+	p.sub {
+		color: #aaa;
+		font-size: 12px;
+		margin-top: 0.4em;
+	}
+
+	h2 {
+		color: #8C5DAB;
+		margin: 1.5em 0 0.4em;
+	}
+
+	pre {
+		text-align: left;
+		width: 45em;
+		font-size: 14px;
+		margin: 0 auto 2em;
+		padding: 1em;
+		background-color: rgba(140, 93, 171, 0.2);
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	div.buttons a {
+		display: inline-block;
+		background-color: #0044CC;
+		background-image: linear-gradient(to bottom, #0088CC, #0044CC);
+		background-repeat: repeat-x;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		color: #FFFFFF;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		border-radius: 3px;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 5px rgba(0, 0, 0, 0.25);
+		color: #FFFFFF;
+		font-size: 14px;
+		font-weight: bold;
+		padding: 8px 18px;
+		margin-right: 3px;
+
+		-o-transition: background-position 0.1s;
+		-ms-transition: background-position 0.1s;
+		-webkit-transition: background-position 0.1s;
+		transition: background-position 0.1s;
+	}
+
+	div.buttons a:hover {
+		background-position: 0 -15px;
+		box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1) inset, 0 1px 5px rgba(0, 0, 0, 0.5);
+	}
+
+	#meebleforp {
+		background-image: linear-gradient(to bottom, #EE5F5B, #BD362F);
+		background-color: #BD362F;
+	}
+	</style>
+</head>
+
+<body>
+	<img src="purple.png" alt="" />
+	<h1>meebleforp.js</h1>
+	<p>Bringing purple madness to every website</p>
+	<p class="sub">*Requires jQuery</p>
+	<h2>Usage</h2>
+	<pre><code>&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;meebleforp.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+// Two minutes of solid purple! 
+meebleforp.start(2 * 60 * 1000);
+&lt;/script&gt;</code></pre>
+
+	<div class="buttons">
+		<a href="#" id="meebleforp" title="Very very purple">See it in action</a>
+		<a href="https://github.com/ZhangYiJiang/meebleforp.js">Fork on GitHub</a>
+	</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="purple.js"></script>
+	<script>
+	$('#meebleforp').click(function(){
+		// Two minutes! 
+		meebleforp.start(2 * 60 * 1000);
+
+		return false;
+	});
+	</script>
+</body>
+</html>
