@@ -61,6 +61,7 @@ var meebleforp = {
 
 					textAlign: 'center', 
 					fontSize: 34, 
+					lineHeight: '34px',
 					fontWeight: 'bold',
 					fontFamily: 'Arial, sans-serif', 
 					textShadow: '1px 1px 4px rgba(0, 0, 0, 0.9)', 
