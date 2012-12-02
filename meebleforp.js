@@ -13,12 +13,10 @@ var meebleforp = {
 		this.flashPurple();
 		this.flashStartingText();
 
-		setTimeout(function(){
-			that.textIntervalId = setInterval(function(){
-				var r = Math.floor(Math.random() * that.randomPhrases.length);
-				that.flashText(that.randomPhrases[r]);
-			}, that.purpleFlashInterval * 2);
-		}, that.purpleFlashInterval);
+		this.textIntervalId = setInterval(function(){
+			var r = Math.floor(Math.random() * that.randomPhrases.length);
+			that.flashText(that.randomPhrases[r]);
+		}, that.purpleFlashInterval * 2);
 
 		if (duration) {
 			setTimeout(function(){
@@ -34,15 +32,19 @@ var meebleforp = {
 
 	init: function () {
 		var purpleOverlay = jQuery('<div>', {
-			css: {
-				position: 'fixed', 
-				top: 0, bottom: 0, right: 0, left: 0,
-				backgroundColor: 'rgba(165, 93, 204, 0.7)', 
-				zIndex: 10000
-			}
+			css: this.overlayStyle
 		}).hide().appendTo('body');
 
+		var textOverlay = jQuery('<div>', {
+			css: {
+				position: 'fixed', 
+				top: 0, left: 0, 
+				zIndex: 20000
+			}
+		}).appendTo('body');
+
 		this.purpleOverlay = purpleOverlay;
+		this.textOverlay = textOverlay;
 	},
 
 	flashPurple: function () {
@@ -55,21 +57,9 @@ var meebleforp = {
 		if (!duration) duration = 2800;
 
 		var textEle = jQuery('<span>', {
-				css: {
-					position: 'absolute', 
-					width: this.textWidth, 
-
-					textAlign: 'center', 
-					fontSize: 34, 
-					lineHeight: '34px',
-					fontWeight: 'bold',
-					fontFamily: 'Arial, sans-serif', 
-					textShadow: '1px 1px 4px rgba(0, 0, 0, 0.9)', 
-					color: '#fff',
-					zIndex: 20000
-				}, 
-				text: text, 
-				'class': 'purple-text'
+				width: this.textWidth,
+				css: this.textStyle, 
+				text: text
 			});
 
 		var	wHeight = this.purpleOverlay.height(), 
@@ -87,11 +77,11 @@ var meebleforp = {
 		// Make sure the text isn't colliding after randomizing
 		} while (this.checkCollision(textEle) && tries <= maxTries);
 
-		textEle.appendTo('body')
+		textEle.appendTo(this.textOverlay)
 			.fadeIn(300).delay(duration)
-		.fadeOut(600, function(){
-			jQuery(this).remove();
-		});
+			.fadeOut(600, function(){
+				jQuery(this).remove();
+			});
 	},
 
 	flashStartingText: function () {
@@ -113,7 +103,7 @@ var meebleforp = {
 		var elePosition = ele.offset(), 
 			foundCollision = false;
 
-		jQuery('span.purple-text').each(function(){
+		this.textOverlay.children().each(function(){
 			var position = jQuery(this).offset();
 
 			if (Math.abs(elePosition.left - position.left) < this.textWidth && 
@@ -130,6 +120,25 @@ var meebleforp = {
 	textWidth: 360, 
 	margin: 100,
 	purpleFlashInterval: 6000,
+
+	textStyle: {
+		position: 'absolute', 
+		textAlign: 'center', 
+		fontSize: 34, 
+		lineHeight: '34px',
+		fontWeight: 'bold',
+		fontFamily: 'Arial, sans-serif', 
+		textShadow: '1px 1px 4px rgba(0, 0, 0, 0.9)', 
+		color: '#fff',
+		zIndex: 20000
+	},
+
+	overlayStyle: {
+		position: 'fixed', 
+		top: 0, bottom: 0, right: 0, left: 0,
+		backgroundColor: 'rgba(165, 93, 204, 0.7)', 
+		zIndex: 10000
+	},
 
 	startingPhrases: [	
 		"Ugh...", 
