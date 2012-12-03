@@ -5,6 +5,13 @@ var meebleforp = {
 		if (!this.purpleOverlay) {
 			this.init();
 		}
+
+		if (!this.running) {
+			this.running = true;
+		} else {
+			// Too much purple can be bad for you
+			return;
+		}
 		
 		this.purpleIntervalId = setInterval(function(){
 			that.flashPurple();
@@ -16,7 +23,7 @@ var meebleforp = {
 		this.textIntervalId = setInterval(function(){
 			var r = Math.floor(Math.random() * that.randomPhrases.length);
 			that.flashText(that.randomPhrases[r]);
-		}, that.purpleFlashInterval * 2);
+		}, that.purpleFlashInterval * 2);	
 
 		if (duration) {
 			setTimeout(function(){
@@ -26,6 +33,7 @@ var meebleforp = {
 	},
 
 	stop: function() {
+		this.running = false;
 		clearInterval(this.textIntervalId);
 		clearInterval(this.purpleIntervalId);
 	},
@@ -116,6 +124,8 @@ var meebleforp = {
 
 		return foundCollision;
 	},
+
+	running: false,
 
 	textWidth: 360, 
 	margin: 100,
